@@ -41,7 +41,7 @@ public class UserController {
         String result = "failure";
         boolean allDeleted = true;
         for(int i : id) {
-            int r = userService.deleteUser(i);
+            int r = userService.deleteUserById(i);
             if (r < 0) {
                 allDeleted = false;
             }

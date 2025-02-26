@@ -16,10 +16,10 @@
         update t_user
         <set>
             <if test="name != null">
-                name=#{name}
+                name=#{name},
             </if>
             <if test="classId != null">
-                classId=#{classId}
+                class_id=#{classId}
             </if>
         </set>
         where id = #{id}

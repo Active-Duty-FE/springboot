@@ -3,9 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msb.mapper.UserMapper">
-    <select id="selectAllUsers" resultType="User">
+    <resultMap id="selectAllUsers" type="User">
         select * from t_user
-    </select>
+        <association property=""></association>
+    </resultMap>
     <insert id="addUser" parameterType="User">
         insert into t_user (name, class_id) values (#{name}, #{classId})
     </insert>
@@ -16,10 +17,10 @@
         update t_user
         <set>
             <if test="name != null">
-                name=#{name}
+                name=#{name},
             </if>
             <if test="classId != null">
-                classId=#{classId}
+                class_id=#{classId}
             </if>
         </set>
         where id = #{id}
