@@ -1,0 +1,8 @@
+com/msb/service/impl/UserServiceImpl.class
+com/msb/mapper/UserMapper.class
+com/msb/controller/UserController.class
+com/msb/pojo/Hobby.class
+com/msb/pojo/Clazz.class
+com/msb/pojo/User.class
+com/msb/StudentApplication.class
+com/msb/service/UserService.class

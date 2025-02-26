@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: student
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test1?characterEncoding=utf8&useSSL=false&serveTimezone=Asia/Seoul
+    username: root
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.msb.pojo
+
