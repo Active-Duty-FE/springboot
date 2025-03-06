@@ -4,8 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msb.mapper.UserMapper">
     <resultMap id="selectAllUsers" type="User">
-        select * from t_user
-        <association property=""></association>
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <collection property="clazz" ofType="Clazz">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+        </collection>
     </resultMap>
     <insert id="addUser" parameterType="User">
         insert into t_user (name, class_id) values (#{name}, #{classId})
