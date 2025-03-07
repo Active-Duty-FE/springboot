@@ -6,15 +6,20 @@
     <resultMap id="selectAllUsers" type="User">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
-        <collection property="clazz" ofType="Clazz">
+        <association property="clazz" javaType="Clazz">
             <id column="id" property="id"/>
             <result column="name" property="name"/>
-        </collection>
+        </association>
     </resultMap>
+    <select id="selectAllUsers" resultMap="selectAllUsers">
+        select * from t_user u
+        join t_clazz c
+        on u.clazz_id=c.id
+    </select>
     <insert id="addUser" parameterType="User">
         insert into t_user (name, class_id) values (#{name}, #{classId})
     </insert>
-    <delete id="deleteUser">
+    <delete id="deleteUserById">
         delete from t_user where id=#{id}
     </delete>
     <update id="updateUser">
