@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msb.mapper.StudentMapper">
+    <resultMap id="getAllStudent" type="Student">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <association property="clazz" javaType="Clazz">
+            <id property="id" column="clazz_id" />
+            <result property="name" column="name" />
+        </association>
+    </resultMap>
+    <select id="getAllStudent" resultMap="getAllStudent">
+        select * from t_student s
+        join t_clazz c
+        on s.clazz_id=c.id
+    </select>
+    <insert id="createStudent">
+        insert into t_student
+        <set>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="clazz != null">
+                clazz_id=#{clazz.id},
+            </if>
+            <if test="hobby != null">
+                hobby_id=#{hobby.id}
+            </if>
+        </set>
+    </insert>
+</mapper>
