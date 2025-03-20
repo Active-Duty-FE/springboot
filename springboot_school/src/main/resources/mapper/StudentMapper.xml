@@ -3,31 +3,66 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msb.mapper.StudentMapper">
-    <resultMap id="getAllStudent" type="Student">
+    <resultMap id="studentMap" type="Student">
         <id property="id" column="id" />
         <result property="name" column="name" />
         <association property="clazz" javaType="Clazz">
             <id property="id" column="clazz_id" />
-            <result property="name" column="name" />
+            <result property="name" column="clazz_name" />
         </association>
+        <collection property="hobby" ofType="Hobby" javaType="ArrayList">
+            <id property="id" column="hobby_id" />
+            <result property="name" column="hobby_name" />
+        </collection>
     </resultMap>
-    <select id="getAllStudent" resultMap="getAllStudent">
-        select * from t_student s
-        join t_clazz c
-        on s.clazz_id=c.id
+    <select id="getAllStudent" resultMap="studentMap">
+        SELECT
+        s.id AS id,
+        s.name AS name,
+        c.id AS clazz_id,
+        c.name AS clazz_name,
+        h.id AS hobby_id,
+        h.name AS hobby_name
+        FROM t_student s
+        left JOIN t_clazz c ON s.clazz_id = c.id
+        left JOIN t_student_hobby sh ON s.id = sh.student_id
+        left join t_hobby h on h.id = sh.hobby_id
     </select>
-    <insert id="createStudent">
+    <select id="getStudentById" resultMap="studentMap" parameterType="Integer">
+        SELECT
+        s.id as id,
+        s.name AS name,
+        c.id AS clazz_id,
+        c.name AS clazz_name,
+        h.id AS hobby_id,
+        h.name AS hobby_name
+        FROM t_student s
+        left JOIN t_clazz c ON s.clazz_id = c.id
+        left JOIN t_student_hobby sh ON s.id = sh.student_id
+        left join t_hobby h on h.id = sh.hobby_id
+        where s.id = #{id}
+    </select>
+    <insert id="createStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
         insert into t_student
         <set>
             <if test="name != null">
                 name=#{name},
             </if>
             <if test="clazz != null">
-                clazz_id=#{clazz.id},
-            </if>
-            <if test="hobby != null">
-                hobby_id=#{hobby.id}
+                clazz_id = #{clazz.id},
             </if>
         </set>
     </insert>
+    <delete id="deleteStudentByIds">
+        delete from
+        t_student
+        <where>
+            <if test="ids != null">
+                id in
+                <foreach collection="ids" open="(" close=")" separator="," item="id">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </delete>
 </mapper>

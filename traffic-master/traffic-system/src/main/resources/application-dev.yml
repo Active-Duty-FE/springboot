@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: traffic-system
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/traffic
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+logging:
+  file:
+    path: /Users/R00381/Documents/Study/project/log/traffic-master/dev/

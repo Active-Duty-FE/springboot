@@ -3,7 +3,31 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.msb.mapper.HobbyMapper">
-    <select id="getAllHobby">
-        select * from t_hobby
+    <resultMap id="studentMap" type="Student">
+        <id property="id" column="student_id" />
+        <result property="name" column="student_name" />
+        <association property="clazz" javaType="Clazz">
+            <id property="id" column="clazz_id" />
+            <result property="name" column="clazz_name" />
+        </association>
+    </resultMap>
+    <resultMap id="getAllHobby" type="Hobby">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <collection property="student" ofType="Student" resultMap="studentMap">
+        </collection>
+    </resultMap>
+    <select id="getAllHobby" resultMap="getAllHobby">
+        select
+        h.id as id,
+        h.name as name,
+        s.id as student_id,
+        s.name as student_name,
+        c.id as clazz_id,
+        c.name as clazz_name
+        from t_hobby h
+        left join t_student_hobby sh on h.id = sh.hobby_id
+        left join t_student s on s.id = sh.student_id
+        left join t_clazz c on c.id = s.clazz_id
     </select>
 </mapper>

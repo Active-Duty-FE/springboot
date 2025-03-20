@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: traffic-system
+  profiles:
+    active: dev
+logging:
+  file:
+    path: /Users/R00381/Documents/Study/project/log/traffic-master/dev

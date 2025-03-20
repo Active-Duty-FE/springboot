@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface StudentMapper {
     List<Student> getAllStudent();
-    int createStudent(Student student);
+    Student getStudentById(Integer id);
+    void createStudent(Student student);
+    int deleteStudentByIds(List<Integer> ids);
 }
