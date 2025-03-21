@@ -15,6 +15,22 @@ public class ConvertUtils {
         userInfo.setUpass(userEntity.getUpass());
         userInfo.setUname(userEntity.getUname());
         userInfo.setUphone(userEntity.getUphone());
+        userInfo.setStartDate(userEntity.getStartDate());
+        userInfo.setEndDate(userEntity.getEndDate());
         return userInfo;
+    }
+    public static UserEntity UserInfoConvertUserEntity(UserInfo userInfo) {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUid(userInfo.getUid());
+        userEntity.setT1(userInfo.getT1());
+        userEntity.setUaccount(userInfo.getUaccount());
+        userEntity.setUdesc(userInfo.getUdesc());
+        userEntity.setUmail(userInfo.getUmail());
+        userEntity.setUpass(userInfo.getUpass());
+        userEntity.setUname(userInfo.getUname());
+        userEntity.setUphone(userInfo.getUphone());
+        userEntity.setStartDate(userInfo.getStartDate());
+        userEntity.setEndDate(userInfo.getEndDate());
+        return userEntity;
     }
 }

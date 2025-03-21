@@ -73,12 +73,6 @@ public class UserController {
         return responseResult;
     }
 
-    @GetMapping("/user")
-    public ResponseResult findAllUser() {
-        List<UserInfo> data = userService.findAllUser();
-        return ResponseResultFactory.buildResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS, "success", data);
-    }
-
     @DeleteMapping("/user")
     public ResponseResult deleteUserByIds(@RequestParam String ids ) {
         ResponseResult responseResult;
@@ -94,4 +88,39 @@ public class UserController {
         }
         return responseResult;
     }
+    @PutMapping("/user")
+    public ResponseResult updateUser(@RequestBody UserEntity userEntity ) {
+        ResponseResult responseResult;
+        if(SystemUtils.isNull(userEntity.getUid()) || userEntity.getUid() == 0) {
+            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_FAIL_USER_ID_NULL, SystemCode.SYSTEM_USER_ERROR_UPD_FAIL_USER_ID_NULL_MSG);
+            return responseResult;
+        }
+        boolean b = userService.updateUser(userEntity);
+        if (b) {
+            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS, "success");
+        } else  {
+            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_USER_FAIL, SystemCode.SYSTEM_USER_ERROR_UPD_USER_FAIL_MSG);
+        }
+        return responseResult;
+    }
+    @GetMapping("/user")
+    public ResponseResult findUserByWhere(@RequestParam(required = false) String name, String phone, String email, String account, String startDate, String endDate) {
+        ResponseResult responseResult;
+        if(SystemUtils.isNullOrEmpty(name) && SystemUtils.isNullOrEmpty(phone) && SystemUtils.isNullOrEmpty(email) && SystemUtils.isNullOrEmpty(account) && SystemUtils.isNullOrEmpty(startDate) && SystemUtils.isNullOrEmpty(endDate)) {
+            List<UserEntity> data = userService.findAllUser();
+            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS, "success", data);
+        } else  {
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUaccount(account);
+            userEntity.setUphone(phone);
+            userEntity.setUmail(email);
+            userEntity.setUname(name);
+            userEntity.setStartDate(startDate);
+            userEntity.setEndDate(endDate);
+            List<UserEntity> userByWhere = userService.findUserByWhere(userEntity);
+            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS, userByWhere);
+        }
+        return responseResult;
+    }
+
 }

@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/traffic-dependency/traffic-dependency.iml" filepath="$PROJECT_DIR$/traffic-dependency/traffic-dependency.iml" />
       <module fileurl="file://$PROJECT_DIR$/traffic-master.iml" filepath="$PROJECT_DIR$/traffic-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/traffic-system.iml" filepath="$PROJECT_DIR$/traffic-system.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,9 @@
 package com.msb.system.service;
 
 import com.msb.api.entity.UserEntity;
+import com.msb.system.dto.UserInfo;
+
+import java.util.List;
 
 public interface UserService {
     /**
@@ -10,4 +13,7 @@ public interface UserService {
      */
     public boolean addUser(UserEntity userEntity);
     public boolean deleteUserByIds(String ids);
+    public boolean updateUser(UserEntity userEntity);
+    public List<UserEntity> findAllUser();
+    public List<UserEntity> findUserByWhere(UserEntity userEntity);
 }

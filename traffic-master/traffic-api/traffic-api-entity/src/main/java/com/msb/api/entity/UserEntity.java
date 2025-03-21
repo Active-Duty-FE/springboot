@@ -1,6 +1,8 @@
 package com.msb.api.entity;
 
 
+import java.util.Date;
+
 public class UserEntity {
 
   private long uid;
@@ -11,9 +13,11 @@ public class UserEntity {
   private String uphone;
   private String t1;
   private String udesc;
-  private java.sql.Timestamp utime;
+  private Date utime;
   private long ustatus;
 
+  private String startDate;
+  private String endDate;
 
   public long getUid() {
     return uid;
@@ -23,7 +27,6 @@ public class UserEntity {
     this.uid = uid;
   }
 
-
   public String getUname() {
     return uname;
   }
@@ -31,7 +34,6 @@ public class UserEntity {
   public void setUname(String uname) {
     this.uname = uname;
   }
-
 
   public String getUaccount() {
     return uaccount;
@@ -41,7 +43,6 @@ public class UserEntity {
     this.uaccount = uaccount;
   }
 
-
   public String getUpass() {
     return upass;
   }
@@ -49,7 +50,6 @@ public class UserEntity {
   public void setUpass(String upass) {
     this.upass = upass;
   }
-
 
   public String getUmail() {
     return umail;
@@ -59,7 +59,6 @@ public class UserEntity {
     this.umail = umail;
   }
 
-
   public String getUphone() {
     return uphone;
   }
@@ -67,7 +66,6 @@ public class UserEntity {
   public void setUphone(String uphone) {
     this.uphone = uphone;
   }
-
 
   public String getT1() {
     return t1;
@@ -77,7 +75,6 @@ public class UserEntity {
     this.t1 = t1;
   }
 
-
   public String getUdesc() {
     return udesc;
   }
@@ -86,15 +83,13 @@ public class UserEntity {
     this.udesc = udesc;
   }
 
-
-  public java.sql.Timestamp getUtime() {
+  public Date getUtime() {
     return utime;
   }
 
-  public void setUtime(java.sql.Timestamp utime) {
+  public void setUtime(Date utime) {
     this.utime = utime;
   }
-
 
   public long getUstatus() {
     return ustatus;
@@ -104,4 +99,19 @@ public class UserEntity {
     this.ustatus = ustatus;
   }
 
+  public String getStartDate() {
+    return startDate;
+  }
+
+  public void setStartDate(String startDate) {
+    this.startDate = startDate;
+  }
+
+  public String getEndDate() {
+    return endDate;
+  }
+
+  public void setEndDate(String endDate) {
+    this.endDate = endDate;
+  }
 }

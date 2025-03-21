@@ -16,7 +16,10 @@ public class ResponseResult<T> {
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
     }
-
+    public ResponseResult(String resultCode, T result) {
+        this.resultCode = resultCode;
+        this.result = result;
+    }
     public ResponseResult(String resultCode, String resultMsg, T result) {
         this.resultCode = resultCode;
         this.resultMsg = resultMsg;
